@@ -26,15 +26,22 @@ class ShopStore {
       {id: 192618,  username: "leia",    price: "70", organization: "aurelia"}
     ];
 
+    this.searchText = '';
+
     this.cart = [];
 
     this.bindListeners({
-      handleAddToCart: ShopActions.ADD_TO_CART
+      handleAddToCart: ShopActions.ADD_TO_CART,
+      handleSearch: ShopActions.SEARCH
     });
   }
 
   handleAddToCart(dev) {
     this.cart.push(dev);
+  }
+
+  handleSearch(text) {
+    this.searchText = text;
   }
 }
 
