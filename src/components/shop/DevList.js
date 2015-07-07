@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Dev from './Dev';
+
 export default class DevList extends React.Component {
   constructor(props){
     super(props);
@@ -29,16 +31,7 @@ export default class DevList extends React.Component {
           <tbody>
           {devs.map((dev) => {
             return (
-              <tr key={dev.id}>
-                <td><img src="./assets/default.png" height="48" alt={dev.username} title={dev.username+"'s photo"} className="img-rounded"/></td>
-                <td><a href={"https://github.com/"+dev.username}>{dev.username}</a></td>
-                <td>${dev.price}</td>
-                
-                <td>
-                  <button type="button" className="btn btn-default pull-right" ng-click="shop.add(developer)" ng-hide="developer.onCart">Add to cart</button>
-                  <button type="button" className="btn btn-danger pull-right" ng-click="shop.remove(developer)" ng-show="developer.onCart">Cancel</button>
-                </td>
-              </tr>
+              <Dev data={dev} />
             )
           })}
           </tbody>
