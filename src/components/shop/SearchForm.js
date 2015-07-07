@@ -8,8 +8,22 @@ export default class SearchForm extends React.Component {
     super(props);
 
     this.state = {searchText: ShopStore.getState().searchText};
+
+    this.onChange = this.onChange.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    ShopStore.listen(this.onChange);
+  }
+
+  componentWillUnmount() {
+    ShopStore.unlisten(this.onChange);
+  }
+
+  onChange(state) {
+    this.setState({searchText: state.searchText});
   }
 
   handleChange(e) {
