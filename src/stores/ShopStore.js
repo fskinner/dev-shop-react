@@ -32,6 +32,7 @@ class ShopStore {
 
     this.bindListeners({
       handleAddToCart: ShopActions.ADD_TO_CART,
+      handleRemoveFromCart: ShopActions.REMOVE_FROM_CART,
       handleSearch: ShopActions.SEARCH
     });
   }
@@ -42,6 +43,12 @@ class ShopStore {
 
   handleSearch(text) {
     this.searchText = text;
+  }
+
+  handleRemoveFromCart(id) {
+    this.cart = this.cart.filter(item => {
+      if(item.id !== id) return item;
+    });
   }
 }
 

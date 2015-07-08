@@ -28,6 +28,7 @@ export default class SearchForm extends React.Component {
 
   handleChange(e) {
     this.setState({ searchText: e.target.value });
+    ShopActions.search(e.target.value);
   }
 
   handleSubmit(e) {
@@ -42,7 +43,7 @@ export default class SearchForm extends React.Component {
 
         <form className="form-inline" ng-submit="shop.getDeveloperList()">
           <div className="form-group">
-            <label htmlFor="githubOrganization">Filter by organization</label>
+            <label htmlFor="githubOrganization" className="margin-right-10">Filter by organization</label>
             <input type="text" className="form-control" id="githubOrganization" placeholder="GitHub Organization" value={this.state.searchText} onChange={this.handleChange}/>
           </div>
           <button type="submit" className="btn btn-success" onClick={this.handleSubmit}>Filter</button>

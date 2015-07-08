@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 
 import Dev from './Dev';
 
@@ -12,7 +13,7 @@ export default class DevList extends React.Component {
 
     if(this.props.filter) {
       devs = devs.filter((dev) => {
-        if(dev.organization === this.props.filter) return dev;
+        if(dev.organization.includes(this.props.filter)) return dev;
       });
     }
 
@@ -24,20 +25,33 @@ export default class DevList extends React.Component {
               <th>Photo</th>
               <th>Username</th>
               <th>Price</th>
-              <th>Hours amount</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
           {devs.map((dev) => {
             return (
-              <Dev data={dev} />
+              <Dev data={dev} onCart={_.findWhere(this.props.cart, {'id': dev.id}) !== undefined}/>
             )
           })}
           </tbody>
         </table>
-        <button type="button" className="btn btn-default btn-lg center-block" ng-hide="shop.lastPage" ng-click="shop.loadNextPage()">Load more</button>
+        {/*<button type="button" className="btn btn-default btn-lg center-block" ng-hide="shop.lastPage" ng-click="shop.loadNextPage()">Load more</button>*/}
       </div>
     );
   }
 }
+
+DevList.propTypes = { 
+  filter: React.PropTypes.string,
+  cart: React.PropTypes.array,
+  data: React.PropTypes.array,
+  page: React.PropTypes.string
+};
+
+DevList.defaultProps = { 
+  filter: '', 
+  cart: [], 
+  data: [], 
+  page: 'shop' 
+};

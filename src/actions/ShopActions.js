@@ -5,6 +5,10 @@ class ShopActions {
     this.dispatch(dev);
   }
 
+  removeFromCart(id) {
+    this.dispatch(id);
+  }
+
   search(text) {
     this.dispatch(text);
   }
