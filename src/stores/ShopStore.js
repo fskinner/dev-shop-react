@@ -33,8 +33,12 @@ class ShopStore {
     this.bindListeners({
       handleAddToCart: ShopActions.ADD_TO_CART,
       handleRemoveFromCart: ShopActions.REMOVE_FROM_CART,
-      handleSearch: ShopActions.SEARCH
+      handleSearch: ShopActions.SEARCH,
+      handleAddVoucher: ShopActions.ADD_VOUCHER,
+      handleRemoveVoucher: ShopActions.REMOVE_VOUCHER
     });
+
+    this.voucher = '';
   }
 
   handleAddToCart(dev) {
@@ -49,6 +53,14 @@ class ShopStore {
     this.cart = this.cart.filter(item => {
       if(item.id !== id) return item;
     });
+  }
+
+  handleAddVoucher(text) {
+    this.voucher = text;
+  }
+
+  handleRemoveVoucher() {
+    this.voucher = '';
   }
 }
 

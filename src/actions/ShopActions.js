@@ -12,6 +12,14 @@ class ShopActions {
   search(text) {
     this.dispatch(text);
   }
+
+  addVoucher(text) {
+    this.dispatch(text);
+  }
+
+  removeVoucher() {
+    this.dispatch();
+  }
 }
 
 export default flux.createActions(ShopActions);
