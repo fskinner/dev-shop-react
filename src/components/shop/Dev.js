@@ -29,14 +29,14 @@ export default class Dev extends React.Component {
 
     return (
       <tr key={this.props.data.id}>
-        <td><img src="./assets/default.png" height="48" alt={this.props.data.username} title={this.props.data.username+"'s photo"} className="img-rounded"/></td>
-        <td><a href={"https://github.com/"+this.props.data.username}>{this.props.data.username}</a></td>
+        <td><img src="./assets/default.png" height="48" alt={this.props.data.username} title={this.props.data.username + '\'s photo'} className="img-rounded"/></td>
+        <td><a href={'https://github.com/' + this.props.data.username}>{this.props.data.username}</a></td>
         <td>${this.props.data.price}</td>
-        
+
         <td>
           {actionButton}
         </td>
-          
+
       </tr>
     );
   }

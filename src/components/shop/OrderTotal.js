@@ -5,10 +5,10 @@ export default class OrderTotal extends React.Component {
     super(props);
 
     this.state = {
-      totalPrice: _.reduce(_.pluck(this.props.cart, 'price'), (total, n) => parseInt(total, 10) + parseInt(n, 10)),
+      totalPrice: parseInt(this.props.cart.map(item => item.price).reduce((total, n) => parseInt(total, 10) + parseInt(n, 10)), 10),
       voucher: '',
       redeemed: false
-    }
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleRedeemClick = this.handleRedeemClick.bind(this);
@@ -36,6 +36,7 @@ export default class OrderTotal extends React.Component {
   }
 
   render() {
+    console.log(this.props.cart.map(item => item.price).reduce((total, n) => parseInt(total, 10) + parseInt(n, 10)));
     return (
       <tfoot>
         <tr>
@@ -44,7 +45,7 @@ export default class OrderTotal extends React.Component {
           <td>${this.state.totalPrice.toFixed(2)}</td>
           <td>
             <input type="text" placeholder="Discount voucher" value={this.state.voucher} onChange={this.handleChange}/>
-            { this.state.redeemed ? 
+            { this.state.redeemed ?
               <button type="button" ng-click="cart.removeVoucher()" className="btn btn-default btn-xs" onClick={this.handleRemoveClick}>Remove</button>
               : <button type="button" ng-click="cart.validateVoucher()" className="btn btn-success btn-xs" onClick={this.handleRedeemClick}>Redeem</button>}
           </td>
@@ -54,10 +55,10 @@ export default class OrderTotal extends React.Component {
   }
 }
 
-OrderTotal.propTypes = { 
+OrderTotal.propTypes = {
   cart: React.PropTypes.array
 };
 
-OrderTotal.defaultProps = { 
+OrderTotal.defaultProps = {
   cart: []
 };

@@ -8,7 +8,16 @@ module.exports = {
     path: __dirname + '/build',
     filename: "app.js"
   },
+  devtool: 'sourcemap',
+  jshint: {
+    esnext: true
+  },
   module: {
+    preLoaders: [{
+      test: /\.js$/,
+      exclude: /node_modules/,
+      loader: 'eslint-loader'
+    }],
     loaders: [
       { 
         test: /\.js?$/, 

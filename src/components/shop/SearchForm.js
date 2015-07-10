@@ -37,7 +37,7 @@ export default class SearchForm extends React.Component {
   }
 
   render() {
-    return(
+    return (
       <div>
         <h2 className="lead">Add a developer</h2>
 
