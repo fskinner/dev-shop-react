@@ -6,18 +6,18 @@ import OrderTotal from './OrderTotal';
 
 export default class DevList extends React.Component {
   render() {
-    let devs = this.props.data;
+    let {data,cart,page} = this.props;
 
     if(this.props.filter) {
-      devs = devs.filter((dev) => {
+      data = data.filter((dev) => {
         if(dev.organization.includes(this.props.filter)) { return dev; }
       });
     }
 
     let footer = (() => {
-      if(this.props.page === 'cart') {
+      if(page === 'cart') {
         return (
-          <OrderTotal cart={this.props.cart}/>
+          <OrderTotal cart={cart}/>
         );
       } else {
         return '';
@@ -38,7 +38,7 @@ export default class DevList extends React.Component {
           <tbody>
           {devs.map((dev) => {
             return (
-              <Dev data={dev} onCart={_.findWhere(this.props.cart, {'id': dev.id}) !== undefined} key={dev.id}/>
+              <Dev data={dev} onCart={_.findWhere(cart, {'id': dev.id}) !== undefined} key={dev.id}/>
             );
           })}
           </tbody>

@@ -36,7 +36,6 @@ export default class OrderTotal extends React.Component {
   }
 
   render() {
-    console.log(this.props.cart.map(item => item.price).reduce((total, n) => parseInt(total, 10) + parseInt(n, 10)));
     return (
       <tfoot>
         <tr>
