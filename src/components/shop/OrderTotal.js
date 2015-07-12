@@ -5,7 +5,7 @@ export default class OrderTotal extends React.Component {
     super(props);
 
     this.state = {
-      totalPrice: parseInt(this.props.cart.map(item => item.price).reduce((total, n) => parseInt(total, 10) + parseInt(n, 10)), 10),
+      totalPrice: parseInt(this.props.cart.map(item => item.get('price')).reduce((total, n) => parseInt(total, 10) + parseInt(n, 10)), 10),
       voucher: '',
       redeemed: false
     };
@@ -55,9 +55,9 @@ export default class OrderTotal extends React.Component {
 }
 
 OrderTotal.propTypes = {
-  cart: React.PropTypes.array
+  cart: React.PropTypes.object
 };
 
 OrderTotal.defaultProps = {
-  cart: []
+  cart: {}
 };

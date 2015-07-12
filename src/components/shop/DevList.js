@@ -6,11 +6,13 @@ import OrderTotal from './OrderTotal';
 
 export default class DevList extends React.Component {
   render() {
-    let {data,cart,page} = this.props;
+    let {data, cart, page} = this.props;
 
     if(this.props.filter) {
       data = data.filter((dev) => {
-        if(dev.organization.includes(this.props.filter)) { return dev; }
+        if(dev.get('organization').includes(this.props.filter)) {
+          return dev;
+        }
       });
     }
 
@@ -36,9 +38,9 @@ export default class DevList extends React.Component {
             </tr>
           </thead>
           <tbody>
-          {devs.map((dev) => {
+          {data.map((dev) => {
             return (
-              <Dev data={dev} onCart={_.findWhere(cart, {'id': dev.id}) !== undefined} key={dev.id}/>
+              <Dev data={dev} onCart={cart.find( cartDev => cartDev.get('id') === dev.get('id') ) !== undefined} key={dev.get('id')}/>
             );
           })}
           </tbody>
@@ -51,14 +53,14 @@ export default class DevList extends React.Component {
 
 DevList.propTypes = {
   filter: React.PropTypes.string,
-  cart: React.PropTypes.array,
-  data: React.PropTypes.array,
+  cart: React.PropTypes.object,
+  data: React.PropTypes.object,
   page: React.PropTypes.string
 };
 
 DevList.defaultProps = {
   filter: '',
-  cart: [],
-  data: [],
+  cart: {},
+  data: {},
   page: 'shop'
 };

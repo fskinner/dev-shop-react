@@ -8,9 +8,14 @@ export default class Page extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = ShopStore.getState();
     this.onChange = this.onChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+
+    this.state = {
+      developers: ShopStore.getState().get('developers'),
+      cart: ShopStore.getState().get('cart'),
+      searchText: ShopStore.getState().get('searchText')
+    };
   }
 
   componentDidMount() {
@@ -22,11 +27,15 @@ export default class Page extends React.Component {
   }
 
   onChange(state) {
-    this.setState(state);
+    this.setState({
+      developers: state.get('developers'),
+      cart: state.get('cart'),
+      searchText: state.get('searchText')
+    });
   }
 
   handleClick(e) {
-    if(this.state.cart.length === 0) {
+    if(this.state.cart.size === 0) {
       e.preventDefault();
     }
   }
@@ -35,7 +44,7 @@ export default class Page extends React.Component {
     return (
       <div>
         <SearchForm />
-        <DevList data={this.state.developers} filter={this.state.searchText} cart={this.state.cart} page={"shop"}/>
+        <DevList data={this.state.developers} cart={this.state.cart} filter={this.state.searchText} page={"shop"}/>
         <a href="#/cart" className="btn btn-primary btn-lg pull-right top-offset-20 bottom-offset-20" onClick={this.handleClick}>Go to cart</a>
       </div>
     );

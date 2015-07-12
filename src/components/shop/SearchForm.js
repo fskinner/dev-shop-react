@@ -7,7 +7,9 @@ export default class SearchForm extends React.Component {
   constructor(props){
     super(props);
 
-    this.state = {searchText: ShopStore.getState().searchText};
+    this.state = {
+      searchText: ShopStore.getState().get('searchText')
+    };
 
     this.onChange = this.onChange.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -23,11 +25,10 @@ export default class SearchForm extends React.Component {
   }
 
   onChange(state) {
-    this.setState({searchText: state.searchText});
+    this.setState({searchText: state.get('searchText')});
   }
 
   handleChange(e) {
-    this.setState({ searchText: e.target.value });
     ShopActions.search(e.target.value);
   }
 
@@ -41,7 +42,7 @@ export default class SearchForm extends React.Component {
       <div>
         <h2 className="lead">Add a developer</h2>
 
-        <form className="form-inline" ng-submit="shop.getDeveloperList()">
+        <form className="form-inline">
           <div className="form-group">
             <label htmlFor="githubOrganization" className="margin-right-10">Filter by organization</label>
             <input type="text" className="form-control" id="githubOrganization" placeholder="GitHub Organization" value={this.state.searchText} onChange={this.handleChange}/>

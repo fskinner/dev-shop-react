@@ -7,9 +7,12 @@ export default class Cart extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = ShopStore.getState();
     this.onChange = this.onChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+
+    this.state = {
+      cart: ShopStore.getState().get('cart')
+    };
   }
 
   componentDidMount() {
@@ -21,11 +24,13 @@ export default class Cart extends React.Component {
   }
 
   onChange(state) {
-    this.setState(state);
+    this.setState({
+      cart: state.get('cart')
+    });
   }
 
   handleClick(e) {
-    if(this.state.cart.length === 0) {
+    if(this.state.cart.size === 0) {
       e.preventDefault();
     }
   }
