@@ -3,6 +3,7 @@
 
 Using:
 - React
-- Flux alt
+- Flux Alt
+- ImmutableJS
 - Webpack
-- ES6
+- ES6/ES7

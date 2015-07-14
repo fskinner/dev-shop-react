@@ -6,7 +6,8 @@ import OrderTotal from './OrderTotal';
 
 export default class DevList extends React.Component {
   render() {
-    let {data, cart, page} = this.props;
+    const {cart, page} = this.props;
+    let {data} = this.props;
 
     if(this.props.filter) {
       data = data.filter((dev) => {

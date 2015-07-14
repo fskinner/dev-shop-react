@@ -56,7 +56,7 @@ class ShopStore {
 
   handleRemoveFromCart(id) {
     let cart = this.state.get('cart').filter(item => {
-      if(item.id !== id) { return item; }
+      if(item.get('id') !== id) { return item; }
     });
 
     this.setState(this.state.set('cart', cart));
