@@ -13,7 +13,7 @@ export default class SearchForm extends React.Component {
 
     this.onChange = this.onChange.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -32,23 +32,24 @@ export default class SearchForm extends React.Component {
     ShopActions.search(e.target.value);
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    ShopActions.search(this.state.searchText);
+  handleClick() {
+    ShopActions.search('');
   }
 
   render() {
     return (
-      <div>
+      <div className="form-inline">
         <h2 className="lead">Add a developer</h2>
-
-        <form className="form-inline">
           <div className="form-group">
-            <label htmlFor="githubOrganization" className="margin-right-10">Filter by organization</label>
-            <input type="text" className="form-control" id="githubOrganization" placeholder="GitHub Organization" value={this.state.searchText} onChange={this.handleChange}/>
+            <label htmlFor="jsFramework" className="margin-right-10">Filter by JS Framework</label>
+            <input type="text"
+             className="form-control margin-right-10"
+             id="jsFramework"
+             placeholder="Framework name"
+             value={this.state.searchText}
+             onChange={this.handleChange}/>
           </div>
-          <button type="submit" className="btn btn-success" onClick={this.handleSubmit}>Filter</button>
-        </form>
+          <button type="button" className="btn btn-info" onClick={this.handleClick}>Clear search</button>
       </div>
     );
   }
