@@ -1,4 +1,4 @@
-var Alt = require('alt');
-var flux = new Alt();
+import Alt from 'alt';
+const flux = new Alt();
 
-module.exports = flux;
+export default flux;

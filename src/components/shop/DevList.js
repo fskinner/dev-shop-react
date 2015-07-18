@@ -10,11 +10,7 @@ export default class DevList extends React.Component {
     let {data} = this.props;
 
     if(this.props.filter) {
-      data = data.filter((dev) => {
-        if(dev.get('organization').includes(this.props.filter)) {
-          return dev;
-        }
-      });
+      data = data.filter((dev) => dev.get('organization').includes(this.props.filter));
     }
 
     const footer = (() => {

@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default class OrderTotal extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.state = {
