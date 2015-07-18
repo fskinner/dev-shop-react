@@ -45,7 +45,7 @@ class ShopStore {
   }
 
   handleAddToCart(dev) {
-    let cart = this.state.get('cart').push(dev);
+    const cart = this.state.get('cart').push(dev);
 
     this.setState(this.state.set('cart', cart));
   }
@@ -55,9 +55,7 @@ class ShopStore {
   }
 
   handleRemoveFromCart(id) {
-    let cart = this.state.get('cart').filter(item => {
-      if(item.get('id') !== id) { return item; }
-    });
+    const cart = this.state.get('cart').filter(item => item.get('id') !== id);
 
     this.setState(this.state.set('cart', cart));
   }

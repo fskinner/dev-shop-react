@@ -21,7 +21,7 @@ export default class Dev extends React.Component {
   render() {
     const {data, onCart} = this.props;
 
-    let actionButton = (() => {
+    const actionButton = (() => {
       if(onCart) {
         return (<button type="button" className="btn btn-danger pull-right" onClick={this.handleRemove}>Remove</button>);
       } else {

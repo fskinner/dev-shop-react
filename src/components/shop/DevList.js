@@ -17,7 +17,7 @@ export default class DevList extends React.Component {
       });
     }
 
-    let footer = (() => {
+    const footer = (() => {
       if(page === 'cart') {
         return (
           <OrderTotal cart={cart}/>
