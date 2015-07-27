@@ -12,8 +12,8 @@ module.exports = {
 
   devtool: 'sourcemap',
 
-  jshint: {
-    esnext: true
+  eslint: {
+    configFile: '.eslintrc'
   },
 
   module: {
