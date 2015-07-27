@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router';
 
 import DevList from '../components/shop/DevList';
 import ShopStore from '../stores/ShopStore';
@@ -39,8 +40,8 @@ export default class Cart extends React.Component {
     return (
       <div>
         <DevList data={this.state.cart} cart={this.state.cart} page={"cart"}/>
-        <a href="#/" className="btn btn-default pull-left top-offset-20 bottom-offset-20 ng-scope">Continue shopping</a>
-        <a href="#/checkout" className="btn btn-primary btn-lg pull-right" onClick={this.handleClick}>Proceed to Checkout</a>
+        <Link to="home" className="btn btn-default pull-left top-offset-20 bottom-offset-20 ng-scope">Continue shopping</Link>
+        <Link to="checkout" className="btn btn-primary btn-lg pull-right" onClick={this.handleClick}>Proceed to Checkout</Link>
       </div>
     );
   }

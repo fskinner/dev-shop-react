@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router';
 
 import SearchForm from '../components/shop/SearchForm';
 import DevList from '../components/shop/DevList';
@@ -45,7 +46,7 @@ export default class Page extends React.Component {
       <div>
         <SearchForm />
         <DevList data={this.state.developers} cart={this.state.cart} filter={this.state.searchText} page={"shop"}/>
-        <a href="#/cart" className="btn btn-primary btn-lg pull-right top-offset-20 bottom-offset-20" onClick={this.handleClick}>Go to cart</a>
+        <Link to="cart" className="btn btn-primary btn-lg pull-right top-offset-20 bottom-offset-20" onClick={this.handleClick}>Go to cart</Link>
       </div>
     );
   }
