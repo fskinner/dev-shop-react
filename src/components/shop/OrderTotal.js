@@ -1,6 +1,14 @@
 import React from 'react';
 
 export default class OrderTotal extends React.Component {
+  static propTypes = {
+    cart: React.PropTypes.object
+  };
+
+  static defaultProps = {
+    cart: {}
+  };
+
   constructor(props) {
     super(props);
 
@@ -53,11 +61,3 @@ export default class OrderTotal extends React.Component {
     );
   }
 }
-
-OrderTotal.propTypes = {
-  cart: React.PropTypes.object
-};
-
-OrderTotal.defaultProps = {
-  cart: {}
-};

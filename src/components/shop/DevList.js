@@ -5,6 +5,20 @@ import Dev from './Dev';
 import OrderTotal from './OrderTotal';
 
 export default class DevList extends React.Component {
+  static propTypes = {
+    filter: React.PropTypes.string,
+    cart: React.PropTypes.object,
+    data: React.PropTypes.object,
+    page: React.PropTypes.string
+  };
+
+  static defaultProps = {
+    filter: '',
+    cart: {},
+    data: {},
+    page: 'shop'
+  };
+
   render() {
     const {cart, page} = this.props;
     let {data} = this.props;
@@ -47,17 +61,3 @@ export default class DevList extends React.Component {
     );
   }
 }
-
-DevList.propTypes = {
-  filter: React.PropTypes.string,
-  cart: React.PropTypes.object,
-  data: React.PropTypes.object,
-  page: React.PropTypes.string
-};
-
-DevList.defaultProps = {
-  filter: '',
-  cart: {},
-  data: {},
-  page: 'shop'
-};
