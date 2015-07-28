@@ -1,13 +1,13 @@
-var webpack = require('webpack');  
-module.exports = {  
+var webpack = require('webpack');
+module.exports = {
   entry: [
     'webpack/hot/only-dev-server',
-    "./src/index.js"
+    './src/index.js'
   ],
 
   output: {
-    path: __dirname + '/build',
-    filename: "app.js"
+    path: './build',
+    filename: 'app.js'
   },
 
   devtool: 'sourcemap',
@@ -25,38 +25,38 @@ module.exports = {
     }],
 
     loaders: [
-      { 
+      {
         test: /\.js?$/,
         exclude: /node_modules/,
         loaders: ['react-hot', 'babel']
       },
-      { 
+      {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
-          stage: 1
+          stage: 0
         }
       },
-      { 
+      {
         test: /\.less$/,
         loader: 'style-loader!css-loader!less-loader'
       },
-      { 
+      {
         test: /\.css$/,
-        loader: "style-loader!css-loader"
+        loader: 'style-loader!css-loader'
       },
-      { 
+      {
         test: /\.(png|jpg|woff)$/,
-        loader: "url-loader?limit=100000"
-      }, 
-      { 
+        loader: 'url-loader?limit=100000'
+      },
+      {
         test: /\.jpg$/,
-        loader: "file-loader"
+        loader: 'file-loader'
       }
     ]
   },
-  
+
   plugins: [
     new webpack.NoErrorsPlugin()
   ]
