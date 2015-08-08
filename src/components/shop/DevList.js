@@ -19,6 +19,22 @@ export default class DevList extends React.Component {
     page: 'shop'
   };
 
+  constructor(props) {
+    super(props);
+
+    this.composeFooter = this.composeFooter.bind(this);
+  }
+
+  composeFooter() {
+    if(this.props.page === 'cart') {
+      return (
+        <OrderTotal cart={this.props.cart}/>
+      );
+    } else {
+      return '';
+    }
+  }
+
   render() {
     const {cart, page} = this.props;
     let {data} = this.props;
@@ -27,15 +43,10 @@ export default class DevList extends React.Component {
       data = data.filter((dev) => dev.get('organization').includes(this.props.filter));
     }
 
-    const footer = (() => {
-      if(page === 'cart') {
-        return (
-          <OrderTotal cart={cart}/>
-        );
-      } else {
-        return '';
-      }
-    })();
+    const footer = this.composeFooter();
+    let devList = data.map((dev) => {
+      return (<Dev data={dev} onCart={cart.find( cartDev => cartDev.get('id') === dev.get('id') ) !== undefined} key={dev.get('id')}/>);
+    });
 
     return (
       <div className="top-offset-20" ng-if="shop.developers.length > 0">
@@ -49,11 +60,7 @@ export default class DevList extends React.Component {
             </tr>
           </thead>
           <tbody>
-          {data.map((dev) => {
-            return (
-              <Dev data={dev} onCart={cart.find( cartDev => cartDev.get('id') === dev.get('id') ) !== undefined} key={dev.get('id')}/>
-            );
-          })}
+            {devList}
           </tbody>
           {footer}
         </table>
