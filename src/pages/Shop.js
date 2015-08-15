@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router';
+import { Link } from 'react-router';
 
 import SearchForm from '../components/shop/SearchForm';
 import DevList from '../components/shop/DevList';

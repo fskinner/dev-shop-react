@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 
 import Dev from './Dev';
 import OrderTotal from './OrderTotal';
@@ -36,8 +35,8 @@ export default class DevList extends React.Component {
   }
 
   render() {
-    const {cart, page} = this.props;
-    let {data} = this.props;
+    const { cart } = this.props;
+    let { data } = this.props;
 
     if(this.props.filter) {
       data = data.filter((dev) => dev.get('organization').includes(this.props.filter));

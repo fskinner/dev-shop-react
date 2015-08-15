@@ -19,7 +19,7 @@ export default class Dev extends React.Component {
   }
 
   render() {
-    const {data, onCart} = this.props;
+    const { data, onCart } = this.props;
 
     const actionButton = (() => {
       if(onCart) {
