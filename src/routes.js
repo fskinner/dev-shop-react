@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, DefaultRoute } from 'react-router';
 
 import App from './components/App';
-
 import Shop from './pages/Shop';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';

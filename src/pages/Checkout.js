@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class Checkout extends React.Component {
+class Checkout extends Component {
   render() {
     return (
       <div>
@@ -9,3 +9,5 @@ export default class Checkout extends React.Component {
     );
   }
 }
+
+export default Checkout;

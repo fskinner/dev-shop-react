@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import Dev from './Dev';
 import OrderTotal from './OrderTotal';
 
-export default class DevList extends React.Component {
+class DevList extends Component {
   static propTypes = {
-    filter: React.PropTypes.string,
-    cart: React.PropTypes.object,
-    data: React.PropTypes.object,
-    page: React.PropTypes.string
+    filter: PropTypes.string,
+    cart: PropTypes.object,
+    data: PropTypes.object,
+    page: PropTypes.string
   };
 
   static defaultProps = {
@@ -25,30 +25,34 @@ export default class DevList extends React.Component {
   }
 
   composeFooter() {
-    if(this.props.page === 'cart') {
+    if (this.props.page === 'cart') {
       return (
-        <OrderTotal cart={this.props.cart}/>
+        <OrderTotal cart={this.props.cart} />
       );
-    } else {
-      return '';
     }
+
+    return '';
   }
 
   render() {
     const { cart } = this.props;
     let { data } = this.props;
-
     if(this.props.filter) {
       data = data.filter((dev) => dev.get('organization').includes(this.props.filter));
     }
 
     const footer = this.composeFooter();
     let devList = data.map((dev) => {
-      return (<Dev data={dev} onCart={cart.find( cartDev => cartDev.get('id') === dev.get('id') ) !== undefined} key={dev.get('id')}/>);
+      return (
+        <Dev data={dev}
+          onCart={cart.find( cartDev => cartDev.get('id') === dev.get('id') ) !== undefined}
+          key={dev.get('id')}
+        />
+      );
     });
 
     return (
-      <div className="top-offset-20" ng-if="shop.developers.length > 0">
+      <div className="top-offset-20">
         <table className="table table-hover">
           <thead>
             <tr>
@@ -67,3 +71,5 @@ export default class DevList extends React.Component {
     );
   }
 }
+
+export default DevList;

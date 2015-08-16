@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import DocumentTitle from 'react-document-title';
 import { RouteHandler } from 'react-router';
+import '../assets/styles/style.css';
 
-export default class App extends React.Component {
+class App extends Component {
   render() {
     return (
       <DocumentTitle title="Devshop">
@@ -11,3 +12,5 @@ export default class App extends React.Component {
     );
   }
 }
+
+export default App;

@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router';
 
 import SearchForm from '../components/shop/SearchForm';
 import DevList from '../components/shop/DevList';
 import ShopStore from '../stores/ShopStore';
 
-export default class Page extends React.Component {
+class Shop extends Component {
   constructor(props) {
     super(props);
 
@@ -45,9 +45,19 @@ export default class Page extends React.Component {
     return (
       <div>
         <SearchForm />
-        <DevList data={this.state.developers} cart={this.state.cart} filter={this.state.searchText} page={"shop"}/>
-        <Link to="cart" className="btn btn-primary btn-lg pull-right top-offset-20 bottom-offset-20" onClick={this.handleClick}>Go to cart</Link>
+        <DevList data={this.state.developers}
+          cart={this.state.cart}
+          filter={this.state.searchText}
+          page={"shop"}
+        />
+        <Link to="cart"
+          className="btn btn-primary btn-lg pull-right top-offset-20 bottom-offset-20"
+          onClick={this.handleClick}>
+          Go to cart
+        </Link>
       </div>
     );
   }
 }
+
+export default Shop;

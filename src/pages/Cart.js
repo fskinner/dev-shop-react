@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router';
 
 import DevList from '../components/shop/DevList';
 import ShopStore from '../stores/ShopStore';
 
-export default class Cart extends React.Component {
+class Cart extends Component {
   constructor(props) {
     super(props);
 
@@ -39,10 +39,19 @@ export default class Cart extends React.Component {
   render() {
     return (
       <div>
-        <DevList data={this.state.cart} cart={this.state.cart} page={"cart"}/>
-        <Link to="home" className="btn btn-default pull-left top-offset-20 bottom-offset-20 ng-scope">Continue shopping</Link>
-        <Link to="checkout" className="btn btn-primary btn-lg pull-right" onClick={this.handleClick}>Proceed to Checkout</Link>
+        <DevList data={this.state.cart} cart={this.state.cart} page={"cart"} />
+        <Link to="home"
+          className="btn btn-default pull-left top-offset-20 bottom-offset-20 ng-scope">
+          Continue shopping
+        </Link>
+        <Link to="checkout"
+          className="btn btn-primary btn-lg pull-right"
+          onClick={this.handleClick}>
+          Proceed to Checkout
+        </Link>
       </div>
     );
   }
 }
+
+export default Cart;
