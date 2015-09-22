@@ -1,13 +1,16 @@
 var webpack = require('webpack');
+var path = require('path');
+
 module.exports = {
   entry: [
-    'webpack/hot/only-dev-server',
+    'webpack-hot-middleware/client',
     './src/index.js'
   ],
 
   output: {
-    path: './build',
-    filename: 'app.js'
+    path: path.join(__dirname, 'dist'),
+    filename: 'app.js',
+    publicPath: '/static/'
   },
 
   devtool: 'sourcemap',
@@ -28,15 +31,7 @@ module.exports = {
       {
         test: /\.js?$/,
         exclude: /node_modules/,
-        loaders: ['react-hot', 'babel']
-      },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-        query: {
-          stage: 0
-        }
+        loaders: ['babel']
       },
       {
         test: /\.less$/,
@@ -58,6 +53,10 @@ module.exports = {
   },
 
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
-  ]
+  ],
+
+  quiet: true,
+  noInfo: true
 };
