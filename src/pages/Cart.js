@@ -40,11 +40,11 @@ class Cart extends Component {
     return (
       <div>
         <DevList data={this.state.cart} cart={this.state.cart} page={"cart"} />
-        <Link to="home"
+        <Link to="/"
           className="btn btn-default pull-left top-offset-20 bottom-offset-20 ng-scope">
           Continue shopping
         </Link>
-        <Link to="checkout"
+        <Link to="/checkout"
           className="btn btn-primary btn-lg pull-right"
           onClick={this.handleClick}>
           Proceed to Checkout

@@ -7,7 +7,7 @@ class App extends Component {
   render() {
     return (
       <DocumentTitle title="Devshop">
-        <RouteHandler/>
+        {this.props.children}
       </DocumentTitle>
     );
   }

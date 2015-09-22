@@ -50,7 +50,7 @@ class Shop extends Component {
           filter={this.state.searchText}
           page={"shop"}
         />
-        <Link to="cart"
+        <Link to="/cart"
           className="btn btn-primary btn-lg pull-right top-offset-20 bottom-offset-20"
           onClick={this.handleClick}>
           Go to cart

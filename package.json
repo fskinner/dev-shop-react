@@ -23,7 +23,7 @@
     "react": "^0.13.3",
     "react-bootstrap": "^0.24.5",
     "react-document-title": "^1.0.3",
-    "react-router": "^0.13.3"
+    "react-router": "^1.0.0-rc1"
   },
   "devDependencies": {
     "babel-core": "^5.8.22",
