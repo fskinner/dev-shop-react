@@ -8,7 +8,15 @@ import * as ShopActions from '../actions/shop';
 import SearchForm from '../components/shop/SearchForm';
 import DevList from '../components/shop/DevList';
 
-class Shop extends React.Component {
+function mapStateToProps(state) {
+  return {
+    devs: state.devs,
+    cart: state.cart
+  };
+}
+
+@connect(mapStateToProps)
+export default class Shop extends React.Component {
   static propTypes = {
     cart: PropTypes.array.isRequired,
     devs: PropTypes.array.isRequired,
@@ -49,12 +57,3 @@ class Shop extends React.Component {
     );
   }
 }
-
-function mapStateToProps(state) {
-  return {
-    devs: state.devs,
-    cart: state.cart
-  };
-}
-
-export default connect(mapStateToProps)(Shop);

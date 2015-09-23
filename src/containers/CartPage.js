@@ -7,7 +7,14 @@ import * as ShopActions from '../actions/shop';
 
 import DevList from '../components/shop/DevList';
 
-class Cart extends React.Component {
+function mapStateToProps(state) {
+  return {
+    cart: state.cart
+  };
+}
+
+@connect(mapStateToProps)
+export default  class Cart extends React.Component {
   constructor(props) {
     super(props);
 
@@ -45,11 +52,3 @@ class Cart extends React.Component {
     );
   }
 }
-
-function mapStateToProps(state) {
-  return {
-    cart: state.cart
-  };
-}
-
-export default connect(mapStateToProps)(Cart);
