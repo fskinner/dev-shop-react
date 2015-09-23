@@ -3,8 +3,8 @@
 
 Using:
 - React
-- Flux Alt
-- ImmutableJS
+- Redux
+- Redux DevTools
 - Webpack
 - ES6/ES7
 
@@ -15,4 +15,7 @@ Running project:
 `npm start`
 
 View on browser:
-[Localhost](https://fskinner-dev-shop.herokuapp.com)
+[Localhost](http://localhost:3000)
+
+See it on production:
+[Heroku](https://fskinner-dev-shop.herokuapp.com)
