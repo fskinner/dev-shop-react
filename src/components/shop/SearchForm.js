@@ -1,39 +1,23 @@
 import React, { Component } from 'react';
 
-import ShopActions from '../../actions/ShopActions';
-import ShopStore from '../../stores/ShopStore';
-
 class SearchForm extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      searchText: ShopStore.getState().get('searchText')
-    };
+    this.state = { text: '' }
 
-    this.onChange = this.onChange.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
 
-  componentDidMount() {
-    ShopStore.listen(this.onChange);
-  }
-
-  componentWillUnmount() {
-    ShopStore.unlisten(this.onChange);
-  }
-
-  onChange(state) {
-    this.setState({searchText: state.get('searchText')});
-  }
-
   handleChange(e) {
-    ShopActions.search(e.target.value);
+    this.props.performSearch(e.target.value);
+    this.setState({ text: e.target.value });
   }
 
   handleClick() {
-    ShopActions.search('');
+    this.props.performSearch('');
+    this.setState({ text: '' });
   }
 
   render() {
@@ -46,10 +30,11 @@ class SearchForm extends Component {
               className="form-control margin-right-10"
               id="jsFramework"
               placeholder="Framework name"
-              value={this.state.searchText}
+              value={this.state.text}
               onChange={this.handleChange}
             />
           </div>
+
           <button type="button" className="btn btn-info" onClick={this.handleClick}>Clear search</button>
       </div>
     );

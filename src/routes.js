@@ -2,14 +2,14 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
 import App from './components/App';
-import Shop from './pages/Shop';
-import Cart from './pages/Cart';
-import Checkout from './pages/Checkout';
+import ShopPage from './containers/ShopPage';
+import CartPage from './containers/CartPage';
+import CheckoutPage from './containers/CheckoutPage';
 
 export default (
   <Route path='/' component={App}>
-    <IndexRoute component={Shop} />
-    <Route path='cart' component={Cart}/>
-    <Route path='checkout' component={Checkout}/>
+    <IndexRoute component={ShopPage} />
+    <Route path='cart' component={CartPage}/>
+    <Route path='checkout' component={CheckoutPage}/>
   </Route>
 );

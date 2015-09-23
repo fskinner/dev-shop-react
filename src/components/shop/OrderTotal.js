@@ -1,27 +1,40 @@
-import React, { Component, PropTypes } from 'react';
+import React, {  PropTypes } from 'react';
 
-class OrderTotal extends Component {
+class OrderTotal extends React.Component {
   static propTypes = {
-    cart: PropTypes.object
+    cart: PropTypes.array
   };
 
   static defaultProps = {
-    cart: {}
+    cart: []
   };
 
   constructor(props) {
     super(props);
 
     this.state = {
-      totalPrice: parseInt(this.props.cart.map(item => item.get('price')).reduce((total, n) => parseInt(total, 10) + parseInt(n, 10)), 10),
       voucher: '',
       redeemed: false
     };
 
+    this.calculateTotal = this.calculateTotal.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleRedeemClick = this.handleRedeemClick.bind(this);
     this.handleRemoveClick = this.handleRemoveClick.bind(this);
     this.renderActionButton = this.renderActionButton.bind(this);
+  }
+
+  calculateTotal() {
+    if(this.props.cart.length === 0) {
+      return 0;
+    }
+
+    let price = this.props.cart.map(item => item.price)
+      .reduce((total, n) => parseInt(total, 10) + parseInt(n, 10));
+
+    if(this.state.redeemed) price = price * 0.9;
+
+    return price;
   }
 
   handleChange(e) {
@@ -30,16 +43,11 @@ class OrderTotal extends Component {
 
   handleRedeemClick() {
     if(this.state.voucher === 'SHIPIT') {
-      this.setState({totalPrice: this.state.totalPrice * 0.9});
       this.setState({redeemed: true});
     }
   }
 
   handleRemoveClick() {
-    if(this.state.redeemed) {
-      this.setState({totalPrice: this.state.totalPrice / 0.9});
-    }
-
     this.setState({voucher: ''});
     this.setState({redeemed: false});
   }
@@ -68,18 +76,21 @@ class OrderTotal extends Component {
 
   render() {
     const actionButton = this.renderActionButton();
+    const totalPrice = this.calculateTotal();
+    console.log('TotalPrice', totalPrice);
 
     return (
       <tfoot>
         <tr>
           <td>Total</td>
           <td></td>
-          <td>${this.state.totalPrice.toFixed(2)}</td>
+          <td>${parseInt(totalPrice).toFixed(2)}</td>
           <td>
             <input type="text"
               placeholder="Discount voucher"
               value={this.state.voucher}
               onChange={this.handleChange}
+              className="margin-right-10"
             />
             { actionButton }
           </td>

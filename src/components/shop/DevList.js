@@ -5,16 +5,14 @@ import OrderTotal from './OrderTotal';
 
 class DevList extends Component {
   static propTypes = {
-    filter: PropTypes.string,
-    cart: PropTypes.object,
-    data: PropTypes.object,
+    cart: PropTypes.array,
+    devs: PropTypes.array,
     page: PropTypes.string
   };
 
   static defaultProps = {
-    filter: '',
-    cart: {},
-    data: {},
+    cart: [],
+    devs: [],
     page: 'shop'
   };
 
@@ -35,18 +33,16 @@ class DevList extends Component {
   }
 
   render() {
-    const { cart } = this.props;
-    let { data } = this.props;
-    if(this.props.filter) {
-      data = data.filter((dev) => dev.get('organization').includes(this.props.filter));
-    }
-
+    const { cart, devs, addToCart, removeFromCart } = this.props;
     const footer = this.composeFooter();
-    let devList = data.map((dev) => {
+
+    let devList = devs.map(dev => {
       return (
         <Dev data={dev}
-          onCart={cart.find( cartDev => cartDev.get('id') === dev.get('id') ) !== undefined}
-          key={dev.get('id')}
+          onCart={cart.find( cartDev => cartDev.id === dev.id ) !== undefined}
+          addToCart={addToCart}
+          removeFromCart={removeFromCart}
+          key={dev.id}
         />
       );
     });
