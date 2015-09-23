@@ -44,6 +44,7 @@
     "react-transform-catch-errors": "^1.0.0",
     "react-transform-hmr": "^1.0.0",
     "redbox-react": "^1.0.1",
+    "redux-devtools": "^2.1.2",
     "style-loader": "^0.12.3",
     "url-loader": "^0.5.5",
     "webpack": "^1.12.0",
