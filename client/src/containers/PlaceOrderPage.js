@@ -1,11 +1,10 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
 import { bindActionCreators } from 'redux';
 import * as ShopActions from '../actions/shop';
 
-class Checkout extends React.Component {
-
+export default class PlaceOrder extends Component {
   constructor(props) {
     super(props);
 
@@ -30,5 +29,3 @@ class Checkout extends React.Component {
     );
   }
 }
-
-export default Checkout;

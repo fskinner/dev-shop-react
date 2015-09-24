@@ -1,28 +1,20 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as ShopActions from '../actions/shop';
 
-import SearchForm from '../components/shop/SearchForm';
 import DevList from '../components/shop/DevList';
 
 function mapStateToProps(state) {
   return {
-    devs: state.devs,
     cart: state.cart
   };
 }
 
 @connect(mapStateToProps)
-export default class Shop extends React.Component {
-  static propTypes = {
-    cart: PropTypes.array.isRequired,
-    devs: PropTypes.array.isRequired,
-    dispatch: PropTypes.func.isRequired
-  };
-
+export default  class Checkout extends Component {
   constructor(props) {
     super(props);
 
@@ -36,22 +28,25 @@ export default class Shop extends React.Component {
   }
 
   render() {
-    const { devs, cart, dispatch } = this.props;
+    const { cart, dispatch } = this.props;
     const actions = bindActionCreators(ShopActions, dispatch);
 
     return (
       <div>
-        <SearchForm performSearch={actions.search} />
-        <DevList devs={devs}
+        <DevList devs={cart}
           addToCart={actions.addToCart}
           removeFromCart={actions.removeFromCart}
           cart={cart}
-          page={"shop"}
+          page={"cart"}
         />
-        <Link to="/cart"
-          className="btn btn-primary btn-lg pull-right top-offset-20 bottom-offset-20"
+        <Link to="/"
+          className="btn btn-default pull-left top-offset-20 bottom-offset-20 ng-scope">
+          Continue shopping
+        </Link>
+        <Link to="/placeorder"
+          className="btn btn-primary btn-lg pull-right"
           onClick={this.handleClick}>
-          Go to cart
+          Proceed to Checkout
         </Link>
       </div>
     );

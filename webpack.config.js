@@ -4,13 +4,13 @@ var path = require('path');
 module.exports = {
   entry: [
     'webpack-hot-middleware/client',
-    './src/index.js'
+    './client/src/index.js'
   ],
 
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, '/client/dist'),
     filename: 'app.js',
-    publicPath: '/static/'
+    publicPath: '/client/static/'
   },
 
   devtool: 'sourcemap',
