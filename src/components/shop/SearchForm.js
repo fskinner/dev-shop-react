@@ -1,6 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
-class SearchForm extends Component {
+const propTypes = {
+  performSearch: PropTypes.func.isRequired
+};
+
+export default class SearchForm extends Component {
   constructor(props) {
     super(props);
 
@@ -41,4 +45,4 @@ class SearchForm extends Component {
   }
 }
 
-export default SearchForm;
+SearchForm.propTypes = propTypes;

@@ -1,8 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import defaultImage from '../../assets/images/default.png';
 
-class Dev extends Component {
+const propTypes = {
+  onCart: PropTypes.bool,
+  data: PropTypes.object,
+  addToCart: PropTypes.func.isRequired,
+  removeFromCart: PropTypes.func.isRequired
+};
+
+export default class Dev extends Component {
   constructor(props) {
     super(props);
 
@@ -62,4 +69,4 @@ class Dev extends Component {
   }
 }
 
-export default Dev;
+Dev.propTypes = propTypes;

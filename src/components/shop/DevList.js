@@ -3,19 +3,21 @@ import React, { Component, PropTypes } from 'react';
 import Dev from './Dev';
 import OrderTotal from './OrderTotal';
 
-class DevList extends Component {
-  static propTypes = {
-    cart: PropTypes.array,
-    devs: PropTypes.array,
-    page: PropTypes.string
-  };
+const propTypes = {
+  cart: PropTypes.array,
+  devs: PropTypes.array,
+  page: PropTypes.string,
+  addToCart: PropTypes.func.isRequired,
+  removeFromCart: PropTypes.func.isRequired
+};
 
-  static defaultProps = {
-    cart: [],
-    devs: [],
-    page: 'shop'
-  };
+const defaultProps = {
+  cart: [],
+  devs: [],
+  page: 'shop'
+};
 
+export default class DevList extends Component {
   constructor(props) {
     super(props);
 
@@ -68,4 +70,5 @@ class DevList extends Component {
   }
 }
 
-export default DevList;
+DevList.propTypes = propTypes;
+DevList.defaultProps = defaultProps;

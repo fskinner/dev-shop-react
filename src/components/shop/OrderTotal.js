@@ -1,14 +1,14 @@
-import React, {  PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 
-class OrderTotal extends React.Component {
-  static propTypes = {
-    cart: PropTypes.array
-  };
+const propTypes = {
+  cart: PropTypes.array
+};
 
-  static defaultProps = {
-    cart: []
-  };
+const defaultProps = {
+  cart: []
+};
 
+export default class OrderTotal extends Component {
   constructor(props) {
     super(props);
 
@@ -100,4 +100,5 @@ class OrderTotal extends React.Component {
   }
 }
 
-export default OrderTotal;
+OrderTotal.propTypes = propTypes;
+OrderTotal.defaultProps = defaultProps;
