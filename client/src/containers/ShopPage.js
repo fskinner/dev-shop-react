@@ -15,12 +15,15 @@ function mapStateToProps(state) {
   };
 }
 
-@connect(mapStateToProps)
+function mapDispatchToProps(dispatch) {
+  return { actions: bindActionCreators(ShopActions, dispatch) };
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
 export default class Shop extends React.Component {
   static propTypes = {
     cart: PropTypes.array.isRequired,
-    shop: PropTypes.object.isRequired,
-    dispatch: PropTypes.func.isRequired
+    shop: PropTypes.object.isRequired
   };
 
   constructor(props) {
@@ -36,8 +39,7 @@ export default class Shop extends React.Component {
   }
 
   render() {
-    const { shop, cart, dispatch } = this.props;
-    const actions = bindActionCreators(ShopActions, dispatch);
+    const { shop, cart, actions } = this.props;
 
     return (
       <div>

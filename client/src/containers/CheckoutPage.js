@@ -13,7 +13,11 @@ function mapStateToProps(state) {
   };
 }
 
-@connect(mapStateToProps)
+function mapDispatchToProps(dispatch) {
+  return { actions: bindActionCreators(ShopActions, dispatch) };
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
 export default  class Checkout extends Component {
   constructor(props) {
     super(props);
@@ -28,12 +32,11 @@ export default  class Checkout extends Component {
   }
 
   render() {
-    const { cart, dispatch } = this.props;
-    const actions = bindActionCreators(ShopActions, dispatch);
-
+    const { cart, dispatch, actions } = this.props;
+    console.log('cart', cart);
     return (
       <div>
-        <DevList devs={cart}
+        <DevList developers={cart}
           addToCart={actions.addToCart}
           removeFromCart={actions.removeFromCart}
           cart={cart}

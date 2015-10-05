@@ -16,8 +16,10 @@ export default function shop(state = initialState, action) {
   case ORG_REQUEST:
     return Object.assign({}, state, { loading: true, error: '' });
   case ORG_SUCCESS:
+    console.log('reducersuccess', action)
     return Object.assign({}, state, { loading: false, developers: action.response.developers });
   case ORG_FAILURE:
+    console.log('reducerfail', action)
     return Object.assign({}, state, { loading: false, error: action.error });
 
   default:

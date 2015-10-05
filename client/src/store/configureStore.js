@@ -8,8 +8,7 @@ import rootReducer from '../reducers';
 const createStoreWithMiddleware = compose(
   applyMiddleware(
     thunkMiddleware,
-    apiMiddleware,
-    loggerMiddleware
+    apiMiddleware
   ),
   devTools(),
   persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))

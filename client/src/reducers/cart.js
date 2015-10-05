@@ -9,7 +9,7 @@ export default function cart(state = initialState, action) {
       id: action.dev.id,
       username: action.dev.username,
       price: action.dev.price,
-      organization: action.dev.organization
+      photo: action.dev.photo
     }, ...state];
 
   case REMOVE_FROM_CART:
