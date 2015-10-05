@@ -5,6 +5,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as ShopActions from '../actions/shop';
 
+import ErrorNotify from '../components/shop/ErrorNotify';
+import Loader from '../components/shop/Loader';
 import SearchForm from '../components/shop/SearchForm';
 import DevList from '../components/shop/DevList';
 
@@ -43,6 +45,9 @@ export default class Shop extends React.Component {
 
     return (
       <div>
+        <Loader loading={shop.loading} />
+        <ErrorNotify message={shop.error} />
+
         <SearchForm performSearch={actions.filterOrganization} />
         <DevList developers={shop.developers}
           addToCart={actions.addToCart}
@@ -50,6 +55,7 @@ export default class Shop extends React.Component {
           cart={cart}
           page={"shop"}
         />
+
         <Link to="/checkout"
           className="btn btn-primary btn-lg pull-right top-offset-20 bottom-offset-20"
           onClick={this.handleClick}>
