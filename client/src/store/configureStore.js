@@ -1,14 +1,23 @@
 import { compose, createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import apiMiddleware from '../middlewares/api';
-import loggerMiddleware from 'redux-logger';
+import createLogger from 'redux-logger';
 import { devTools, persistState } from 'redux-devtools';
 import rootReducer from '../reducers';
+
+const loggerMiddleware = createLogger({
+  actionTransformer: (action) => {
+    return Object.assign({}, action, {
+      type: String(action.type),
+    });
+  },
+});
 
 const createStoreWithMiddleware = compose(
   applyMiddleware(
     thunkMiddleware,
-    apiMiddleware
+    apiMiddleware,
+    loggerMiddleware
   ),
   devTools(),
   persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
