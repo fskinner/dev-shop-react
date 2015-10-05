@@ -20,7 +20,6 @@ export function clearOrganization() {
 }
 
 export function addToCart(dev) {
-  console.log(dev);
   return { type: types.ADD_TO_CART, dev };
 }
 

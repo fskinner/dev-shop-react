@@ -33,7 +33,7 @@ export default  class Checkout extends Component {
 
   render() {
     const { cart, dispatch, actions } = this.props;
-    console.log('cart', cart);
+
     return (
       <div>
         <DevList developers={cart}

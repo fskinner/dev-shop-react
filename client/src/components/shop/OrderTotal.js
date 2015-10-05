@@ -77,7 +77,6 @@ export default class OrderTotal extends Component {
   render() {
     const actionButton = this.renderActionButton();
     const totalPrice = this.calculateTotal();
-    console.log('TotalPrice', totalPrice);
 
     return (
       <tfoot>
