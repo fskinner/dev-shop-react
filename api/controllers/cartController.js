@@ -1,9 +1,9 @@
 var cartController = {
-  get : function(req, res, next) {
+  get: function(req, res, next) {
     res.json(hired_users);
   },
 
-  post : function (req, res) {
+  post: function (req, res) {
     var user = req.body.user;
 
     for(var i = 0, len = hired_users.length; i<len; i++){
@@ -17,7 +17,7 @@ var cartController = {
     res.sendStatus(201);
   },
 
-  delete : function (req, res) {
+  delete: function (req, res) {
     var id = req.params.id;
 
     for(var i = 0, len = hired_users.length; i<len; i++){
@@ -30,7 +30,7 @@ var cartController = {
     res.sendStatus(400);
   },
 
-  wipe : function (req, res) {
+  wipe: function (req, res) {
     hired_users = [];
 
     res.sendStatus(200);
