@@ -1,5 +1,6 @@
 import { compose, createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
+import apiMiddleware from '../middlewares/api';
 import loggerMiddleware from 'redux-logger';
 import { devTools, persistState } from 'redux-devtools';
 import rootReducer from '../reducers';
@@ -7,6 +8,7 @@ import rootReducer from '../reducers';
 const createStoreWithMiddleware = compose(
   applyMiddleware(
     thunkMiddleware,
+    apiMiddleware,
     loggerMiddleware
   ),
   devTools(),

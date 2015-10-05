@@ -24,6 +24,7 @@ var orgController = {
       if(devs.constructor !== Array) devs = [];
       devs.forEach(function(el, index){
         users[index] = {
+          id: el.id,
           username : el.login,
           photo : el.avatar_url,
           price : (el.login.length * 13 + index * el.login.length)/4 // 'random' price

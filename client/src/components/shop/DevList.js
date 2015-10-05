@@ -5,7 +5,7 @@ import OrderTotal from './OrderTotal';
 
 const propTypes = {
   cart: PropTypes.array,
-  devs: PropTypes.array,
+  developers: PropTypes.array,
   page: PropTypes.string,
   addToCart: PropTypes.func.isRequired,
   removeFromCart: PropTypes.func.isRequired
@@ -13,7 +13,7 @@ const propTypes = {
 
 const defaultProps = {
   cart: [],
-  devs: [],
+  developers: [],
   page: 'shop'
 };
 
@@ -35,16 +35,16 @@ export default class DevList extends Component {
   }
 
   render() {
-    const { cart, devs, addToCart, removeFromCart } = this.props;
+    const { cart, developers, addToCart, removeFromCart } = this.props;
     const footer = this.composeFooter();
 
-    let devList = devs.map(dev => {
+    let devList = developers.map(dev => {
       return (
-        <Dev data={dev}
+        <Dev key={dev.id}
+          data={dev}
           onCart={cart.find( cartDev => cartDev.id === dev.id ) !== undefined}
           addToCart={addToCart}
           removeFromCart={removeFromCart}
-          key={dev.id}
         />
       );
     });

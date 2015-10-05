@@ -10,7 +10,7 @@ import DevList from '../components/shop/DevList';
 
 function mapStateToProps(state) {
   return {
-    devs: state.devs,
+    shop: state.shop,
     cart: state.cart
   };
 }
@@ -19,7 +19,7 @@ function mapStateToProps(state) {
 export default class Shop extends React.Component {
   static propTypes = {
     cart: PropTypes.array.isRequired,
-    devs: PropTypes.array.isRequired,
+    shop: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired
   };
 
@@ -36,13 +36,13 @@ export default class Shop extends React.Component {
   }
 
   render() {
-    const { devs, cart, dispatch } = this.props;
+    const { shop, cart, dispatch } = this.props;
     const actions = bindActionCreators(ShopActions, dispatch);
 
     return (
       <div>
-        <SearchForm performSearch={actions.search} />
-        <DevList devs={devs}
+        <SearchForm performSearch={actions.filterOrganization} />
+        <DevList developers={shop.developers}
           addToCart={actions.addToCart}
           removeFromCart={actions.removeFromCart}
           cart={cart}

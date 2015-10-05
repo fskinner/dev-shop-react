@@ -13,7 +13,7 @@ module.exports = {
     publicPath: '/client/static/'
   },
 
-  devtool: 'sourcemap',
+  devtool: 'source-map',
 
   eslint: {
     configFile: '.eslintrc'

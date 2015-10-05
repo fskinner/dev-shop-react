@@ -51,16 +51,16 @@ export default class Dev extends Component {
     const actionButton = this.renderActionButton();
 
     return (
-      <tr key={data.id}>
+      <tr>
         <td>
-          <img src={defaultImage}
+          <img src={data.photo || defaultImage}
             height="48" alt={data.username}
             title={data.username + '\'s photo'}
             className="img-rounded"
           />
         </td>
         <td><a href={'https://github.com/' + data.username}>{data.username}</a></td>
-        <td>${data.price}</td>
+        <td>${data.price.toFixed(2)}</td>
         <td>
           {actionButton}
         </td>
