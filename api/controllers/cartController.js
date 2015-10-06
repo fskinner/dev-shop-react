@@ -4,17 +4,19 @@ var cartController = {
   },
 
   post: function (req, res) {
-    var user = req.body.user;
+    var user = req.body;
 
     for(var i = 0, len = hired_users.length; i<len; i++){
       if(hired_users[i].id == user.id) {
         hired_users[i].hours += user.hours;
-          return res.sendStatus(200);
+          res.status(200);
+          return res.json(user);
       }
     }
 
     hired_users.push(user);
-    res.sendStatus(201);
+    res.status(201);
+    res.json(user);
   },
 
   delete: function (req, res) {

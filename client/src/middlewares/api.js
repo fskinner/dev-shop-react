@@ -1,4 +1,4 @@
-import 'isomorphic-fetch';
+import axios from 'axios';
 
 // Action key that carries API call info interpreted by this Redux middleware.
 export const CALL_API = Symbol('Call API');
@@ -11,7 +11,7 @@ export default store => next => action => {
     return next(action);
   }
 
-  let { endpoint } = callAPI;
+  let { endpoint, method, data } = callAPI;
   const { types } = callAPI;
 
   if (typeof endpoint === 'function') {
@@ -38,27 +38,35 @@ export default store => next => action => {
   const [requestType, successType, failureType] = types;
   next(actionWith({ type: requestType }));
 
-  return callApi(endpoint).then(
+  return callApi(endpoint, method, data).then(
     response => next(actionWith({
       type: successType,
       response
     })),
     error => next(actionWith({
       type: failureType,
-      error: error.message || 'Something bad happened'
+      error: error.statusText || 'Something bad happened'
     }))
   );
 };
 
-function callApi(endpoint) {
-  return fetch(endpoint)
-    .then(response =>
-      response.json().then(json => ({ json, response }))
-    ).then(({ json, response }) => {
-      if (!response.ok) {
-        return Promise.reject(json);
-      }
+function callApi(endpoint, method, data) {
+  let requestOptions = {
+    url: endpoint,
+    method: method
+  }
 
-      return json;
+  if(data) {
+    requestOptions.data = data
+  };
+
+  return axios(requestOptions)
+    .then(response => {
+      console.log('reponse', response);
+      if (response.status !== 200 && response.status !== 201) {
+        return Promise.reject(response);
+      }
+      console.log('responsedata', response.data)
+      return response.data;
     });
 }

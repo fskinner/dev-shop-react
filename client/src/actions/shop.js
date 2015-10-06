@@ -5,6 +5,7 @@ export function filterOrganization(org) {
   return {
     [CALL_API]: {
       types: [types.ORG_REQUEST, types.ORG_SUCCESS, types.ORG_FAILURE],
+      method: 'GET',
       endpoint: `/orgs/${org}/users`
     }
   }
@@ -20,7 +21,14 @@ export function clearOrganization() {
 }
 
 export function addToCart(dev) {
-  return { type: types.ADD_TO_CART, dev };
+  return {
+    [CALL_API]: {
+      types: [types.CART_ADD_REQUEST, types.CART_ADD_SUCCESS, types.CART_ADD_FAILURE],
+      method: 'POST',
+      endpoint: '/cart',
+      data: dev
+    }
+  }
 }
 
 export function removeFromCart(id) {

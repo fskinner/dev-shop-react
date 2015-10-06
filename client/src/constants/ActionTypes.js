@@ -1,7 +1,9 @@
 export const ORG_REQUEST = 'ORG_REQUEST';
 export const ORG_SUCCESS = 'ORG_SUCCESS';
 export const ORG_FAILURE = 'ORG_FAILURE';
-export const ADD_TO_CART = 'ADD_TO_CART';
+export const CART_ADD_REQUEST = 'CART_ADD_REQUEST';
+export const CART_ADD_SUCCESS = 'CART_ADD_SUCCESS';
+export const CART_ADD_FAILURE = 'CART_ADD_FAILURE';
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 export const CLEAR_CART = 'CLEAR_CART';
 export const SEARCH = 'SEARCH';
