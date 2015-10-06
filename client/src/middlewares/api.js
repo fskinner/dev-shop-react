@@ -51,22 +51,18 @@ export default store => next => action => {
 };
 
 function callApi(endpoint, method, data) {
-  let requestOptions = {
+  const requestOptions = {
     url: endpoint,
-    method: method
+    method,
+    data
   }
-
-  if(data) {
-    requestOptions.data = data
-  };
 
   return axios(requestOptions)
     .then(response => {
-      console.log('reponse', response);
-      if (response.status !== 200 && response.status !== 201) {
-        return Promise.reject(response);
+      if (response.status >= 200 && response.status < 300) {
+        return response.data;
       }
-      console.log('responsedata', response.data)
-      return response.data;
+
+      return Promise.reject(response);
     });
 }
