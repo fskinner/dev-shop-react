@@ -31,6 +31,10 @@ export default  class Checkout extends Component {
     }
   }
 
+  componentDidMount() {
+    this.props.actions.fetchCart();
+  }
+
   render() {
     const { cart, dispatch, actions } = this.props;
 

@@ -1,7 +1,8 @@
 import {
+  CART_FETCH_SUCCESS,
   CART_ADD_SUCCESS,
   CART_REMOVE_SUCCESS,
-  CLEAR_CART
+  CART_CLEAR_SUCCESS
 } from '../constants/ActionTypes';
 
 const initialState = [];
@@ -10,6 +11,9 @@ export default function cart(state = initialState, action) {
   const { response } = action;
 
   switch (action.type) {
+  case CART_FETCH_SUCCESS:
+    return response.payload;
+
   case CART_ADD_SUCCESS:
     return [{
       id: response.payload.id,
@@ -21,7 +25,7 @@ export default function cart(state = initialState, action) {
   case CART_REMOVE_SUCCESS:
     return state.filter(dev => dev.id !== response.payload.id);
 
-  case CLEAR_CART:
+  case CART_CLEAR_SUCCESS:
     return initialState;
 
   default:

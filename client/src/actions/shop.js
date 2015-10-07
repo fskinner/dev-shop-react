@@ -59,7 +59,10 @@ export function clearCart() {
     [CALL_API]: {
       types: [types.CART_CLEAR_REQUEST, types.CART_CLEAR_SUCCESS, types.CART_CLEAR_FAILURE],
       method: 'DELETE',
-      endpoint: `/cart`
+      endpoint: `/cart`,
+      payload: {
+        cart: []
+      }
     }
   }
 }
