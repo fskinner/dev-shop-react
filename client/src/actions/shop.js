@@ -20,6 +20,16 @@ export function clearOrganization() {
   }
 }
 
+export function fetchCart() {
+  return {
+    [CALL_API]: {
+      types: [types.CART_FETCH_REQUEST, types.CART_FETCH_SUCCESS, types.CART_FETCH_FAILURE],
+      method: 'GET',
+      endpoint: '/cart'
+    }
+  }
+}
+
 export function addToCart(dev) {
   return {
     [CALL_API]: {
@@ -32,11 +42,26 @@ export function addToCart(dev) {
 }
 
 export function removeFromCart(id) {
-  return { type: types.REMOVE_FROM_CART, id };
+  return {
+    [CALL_API]: {
+      types: [types.CART_REMOVE_REQUEST, types.CART_REMOVE_SUCCESS, types.CART_REMOVE_FAILURE],
+      method: 'DELETE',
+      endpoint: `/cart/${id}`,
+      payload: {
+        id
+      }
+    }
+  }
 }
 
 export function clearCart() {
-  return { type: types.CLEAR_CART };
+  return {
+    [CALL_API]: {
+      types: [types.CART_CLEAR_REQUEST, types.CART_CLEAR_SUCCESS, types.CART_CLEAR_FAILURE],
+      method: 'DELETE',
+      endpoint: `/cart`
+    }
+  }
 }
 
 export function search(text) {

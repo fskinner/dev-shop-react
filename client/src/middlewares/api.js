@@ -11,7 +11,15 @@ export default store => next => action => {
     return next(action);
   }
 
-  let { endpoint, method, data } = callAPI;
+  let {
+    endpoint,
+    method,
+    data,
+    params,
+    headers,
+    payload
+  } = callAPI;
+
   const { types } = callAPI;
 
   if (typeof endpoint === 'function') {
@@ -38,7 +46,7 @@ export default store => next => action => {
   const [requestType, successType, failureType] = types;
   next(actionWith({ type: requestType }));
 
-  return callApi(endpoint, method, data).then(
+  return callApi(endpoint, method, data, payload).then(
     response => next(actionWith({
       type: successType,
       response
@@ -50,7 +58,7 @@ export default store => next => action => {
   );
 };
 
-function callApi(endpoint, method, data) {
+function callApi(endpoint, method, data, payload) {
   const requestOptions = {
     url: endpoint,
     method,
@@ -59,10 +67,20 @@ function callApi(endpoint, method, data) {
 
   return axios(requestOptions)
     .then(response => {
-      if (response.status >= 200 && response.status < 300) {
-        return response.data;
+      if(response.status < 200 || response.status >= 300) {
+        return Promise.reject(response);
       }
 
-      return Promise.reject(response);
+      if(typeof response.data !== 'object' && payload) {
+        return {
+          message: response.data,
+          payload
+        };
+      }
+
+      return {
+        message: response.statusText,
+        payload: response.data
+      }
     });
 }
