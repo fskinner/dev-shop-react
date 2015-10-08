@@ -11,10 +11,11 @@ export function filterOrganization(org) {
   }
 }
 
-export function clearOrganization() {
+export function getShop() {
   return {
     [CALL_API]: {
       types: [types.ORG_REQUEST, types.ORG_SUCCESS, types.ORG_FAILURE],
+      method: 'GET',
       endpoint: `/users`
     }
   }

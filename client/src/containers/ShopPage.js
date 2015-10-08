@@ -40,15 +40,20 @@ export default class Shop extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.props.actions.getShop();
+  }
+
   render() {
     const { shop, cart, actions } = this.props;
 
     return (
       <div>
+        <SearchForm performSearch={actions.filterOrganization} />
+
         <Loader loading={shop.loading} />
         <ErrorNotify message={shop.error} />
 
-        <SearchForm performSearch={actions.filterOrganization} />
         <DevList developers={shop.developers}
           addToCart={actions.addToCart}
           removeFromCart={actions.removeFromCart}
@@ -56,11 +61,11 @@ export default class Shop extends React.Component {
           page={"shop"}
         />
 
-        <Link to="/checkout"
+        {shop.developers ? <Link to="/checkout"
           className="btn btn-primary btn-lg pull-right top-offset-20 bottom-offset-20"
           onClick={this.handleClick}>
           Go to cart
-        </Link>
+        </Link> : ''}
       </div>
     );
   }

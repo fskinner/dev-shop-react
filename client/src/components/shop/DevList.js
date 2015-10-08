@@ -51,7 +51,7 @@ export default class DevList extends Component {
 
     return (
       <div className="top-offset-20">
-        <table className="table table-hover">
+        {developers.length > 0 ? <table className="table table-hover">
           <thead>
             <tr>
               <th>Photo</th>
@@ -65,6 +65,7 @@ export default class DevList extends Component {
           </tbody>
           {footer}
         </table>
+      : ''}
       </div>
     );
   }

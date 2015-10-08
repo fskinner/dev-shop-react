@@ -1,12 +1,6 @@
 import { ORG_REQUEST, ORG_SUCCESS, ORG_FAILURE } from '../constants/ActionTypes';
 
 const initialState = {
-  developers: [
-    {id: 1041, username: 'joao', price: 33.20},
-    {id: 20073, username: 'jorge', price: 41.75},
-    {id: 2248, username: 'pedro', price: 32},
-    {id: 4660, username: 'paulo', price: 97.10}
-  ],
   loading: false,
   error: ''
 };
