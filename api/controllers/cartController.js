@@ -1,13 +1,15 @@
-var cartController = {
-  get: function(req, res, next) {
+let hired_users = [];
+
+let cartController = {
+  get(req, res, next) {
     res.json(hired_users);
   },
 
-  post: function (req, res) {
-    var user = req.body;
+  post(req, res) {
+    let user = req.body;
 
-    for(var i = 0, len = hired_users.length; i<len; i++){
-      if(hired_users[i].id == user.id) {
+    for(let i = 0, len = hired_users.length; i<len; i++){
+      if(hired_users[i].id === user.id) {
         hired_users[i].hours += user.hours;
           res.status(200);
           return res.json(user);
@@ -19,26 +21,19 @@ var cartController = {
     res.json(user);
   },
 
-  delete: function (req, res) {
-    var id = req.params.id;
+  delete(req, res) {
+    let id = req.params.id;
 
-    for(var i = 0, len = hired_users.length; i<len; i++){
-      if(hired_users[i].id == id) {
-        hired_users.splice(i, 1);
-          return res.sendStatus(200);
-      }
-    }
+    hired_users = hired_users.filter(user => user.id !== id );
 
-    res.sendStatus(400);
+    res.sendStatus(200);
   },
 
-  wipe: function (req, res) {
+  wipe(req, res) {
     hired_users = [];
 
     res.sendStatus(200);
   }
 };
 
-var hired_users = [];
-
-module.exports = cartController;
+export default cartController;

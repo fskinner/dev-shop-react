@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "node server.js",
+    "start": "babel-node server.js",
     "build": "webpack --progress --colors",
     "test": "mocha test/*.spec.js"
   },
@@ -19,6 +19,7 @@
   "homepage": "https://github.com/fskinner/dev-shop-backend#readme",
   "dependencies": {
     "axios": "^0.7.0",
+    "babel": "^5.8.23",
     "body-parser": "^1.12.3",
     "express": "^4.12.3",
     "history": "^1.9.0",

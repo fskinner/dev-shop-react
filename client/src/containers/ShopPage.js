@@ -61,7 +61,7 @@ export default class Shop extends React.Component {
           page={"shop"}
         />
 
-        {shop.developers ? <Link to="/checkout"
+        {shop.developers || cart ? <Link to="/checkout"
           className="btn btn-primary btn-lg pull-right top-offset-20 bottom-offset-20"
           onClick={this.handleClick}>
           Go to cart

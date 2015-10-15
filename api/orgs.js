@@ -1,7 +1,8 @@
-var express = require('express');
-var router = express.Router();
-var orgController = require('./controllers/orgController');
+import express from 'express';
+import orgController from './controllers/orgController';
+
+const router = express.Router();
 
 router.get('/:org/users', orgController.get);
 
-module.exports = router;
+export default router;

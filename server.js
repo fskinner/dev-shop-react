@@ -1,17 +1,19 @@
-var path = require('path');
-var webpack = require('webpack');
-var config = require('./webpack.config');
-var compiler = webpack(config);
+import path from 'path';
+import webpack from 'webpack';
+import config from './webpack.config';
 
-var express = require('express');
-var bodyParser = require('body-parser');
-var request = require('request');
-var router = express.Router();
-var app = express();
+import express from 'express';
+import bodyParser from 'body-parser';
+import request from 'request';
 
-var users_route = require('./api/users');
-var orgs_route = require('./api/orgs');
-var cart_route = require('./api/cart');
+const router = express.Router();
+const app = express();
+
+import users_route from './api/users';
+import orgs_route from './api/orgs';
+import cart_route from './api/cart';
+
+const compiler = webpack(config);
 
 app.use(express.static(__dirname + '/client'));
 
@@ -21,7 +23,7 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse applica
 
 app.use('/', router);
 
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     res.header('Accept', 'application/vnd.github.v3+json');
@@ -39,18 +41,17 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
-app.route('/').get(function(req, res) {
+app.route('/').get((req, res) => {
   res.sendFile(path.join(__dirname, 'client/index.html'));
 });
 
-var server = app.listen(process.env.PORT || 3000, 'localhost', function (err) {
+var server = app.listen(process.env.PORT || 3000, 'localhost', (err) => {
   if (err) {
     console.log(err);
     return;
   }
 
-  var host = server.address().address;
-  var port = server.address().port;
+  const { host, port } = server.address();
 
   console.log('App listening at port %s ...', port);
 });
